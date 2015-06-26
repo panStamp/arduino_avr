@@ -37,8 +37,8 @@
 /**
  * Default working mode
  */
-//#define DEFAULT_WORKING_MODE  0  // Speed = 38 Kbps
-#define DEFAULT_WORKING_MODE  MODE_LOW_SPEED  // Speed = 4800 bps
+#define DEFAULT_WORKING_MODE  0  // Speed = 38 Kbps
+//#define DEFAULT_WORKING_MODE  MODE_LOW_SPEED  // Speed = 4800 bps
 
 /**
  * Alias
