@@ -33,6 +33,10 @@
 
 #include <avr/pgmspace.h>
 
+// SPI CC1101 interface
+#define CC1101_SPI_SS   10      // PB2 = SPI_SS
+#define CC1101_GDO0	    2      // PD2 = INT0
+
 #define NUM_DIGITAL_PINS            20
 #define NUM_ANALOG_INPUTS           6
 #define analogInputToDigitalPin(p)  ((p < 6) ? (p) + 14 : -1)
