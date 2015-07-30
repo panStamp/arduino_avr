@@ -3,19 +3,34 @@
 menu.cpu=Processor
 
 ##############################################################
-avr.name=panStamp AVR w/ atmega328p
+avr2.name=panStamp AVR 2 w/ atmega328p
 
-avr.upload.tool=avrdude
-avr.upload.protocol=arduino
-avr.upload.maximum_data_size=2048
-avr.upload.maximum_size=32256
-avr.upload.speed=57600
+avr2.upload.tool=avrdude
+avr2.upload.protocol=arduino
+avr2.upload.maximum_data_size=2048
+avr2.upload.maximum_size=32256
+avr2.upload.speed=57600
 
-avr.build.core=panstamp
-avr.build.mcu=atmega328p
-avr.build.f_cpu=8000000L
-avr.build.variant=panstamp
-avr.build.board=PANSTAMP_AVR
+avr2.build.core=panstamp
+avr2.build.mcu=atmega328p
+avr2.build.f_cpu=8000000L
+avr2.build.variant=panstamp_avr_2.0
+avr2.build.board=PANSTAMP_AVR
+
+##############################################################
+avr1.name=panStamp AVR 1 w/ atmega328p
+
+avr1.upload.tool=avrdude
+avr1.upload.protocol=arduino
+avr1.upload.maximum_data_size=2048
+avr1.upload.maximum_size=32256
+avr1.upload.speed=57600
+
+avr1.build.core=panstamp
+avr1.build.mcu=atmega328p
+avr1.build.f_cpu=8000000L
+avr1.build.variant=panstamp
+avr1.build.board=PANSTAMP_AVR
 
 ##############################################################
 
