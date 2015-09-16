@@ -74,6 +74,11 @@ static const uint8_t A7 = 13;
 // Preferred analog pin to measure battery voltage
 #define BATT_VOLT_PIN   A0
 
+// NTC power pin
+#define NTC_POWER_PIN   22
+// NTC ADC pin
+#define NTC_PIN    A7
+
 // ADC resolution
 #define ADC_RESOLUTION  1023
 
