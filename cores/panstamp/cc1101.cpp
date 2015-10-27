@@ -58,6 +58,8 @@ CC1101::CC1101(void)
   syncWord[0] = CC1101_DEFVAL_SYNC1;
   syncWord[1] = CC1101_DEFVAL_SYNC0;
   devAddress = CC1101_DEFVAL_ADDR;
+
+  hgmEnabled = false;
 }
 
 /**
@@ -391,6 +393,10 @@ void CC1101::setCarrierFreq(byte freq)
  */
 void CC1101::setPowerDownState() 
 {
+  // Disable LNA on LD-board if any
+  if (hgmEnabled)
+    disableLNA();
+
   // Comming from RX state, we need to enter the IDLE state first
   cmdStrobe(CC1101_SIDLE);
   // Enter Power-down state
@@ -532,6 +538,10 @@ void CC1101::setRxState(void)
 {
   cmdStrobe(CC1101_SRX);
   rfState = RFSTATE_RX;
+
+  // Enable LNA on LD-board if any
+  if (hgmEnabled)
+    enableLNA();
 }
 
 /**
@@ -541,6 +551,72 @@ void CC1101::setRxState(void)
  */
 void CC1101::setTxState(void)
 {
-   cmdStrobe(CC1101_STX);
+  // Enable PA on LD-board if any
+  if (hgmEnabled)
+    enablePA();
+
+  cmdStrobe(CC1101_STX);
   rfState = RFSTATE_TX;
 }
+
+/**
+ * enablePA
+ *
+ * Enable PA and disable LNA on the LD-Board
+ */
+void CC1101::enablePA(void)
+{
+ digitalWrite(PA_EN, HIGH);
+ digitalWrite(LNA_EN, LOW);
+}
+
+/**
+ * enableLNA
+ *
+ * Enable LNA and disable PA on the LD-Board
+ */
+void CC1101::enableLNA(void)
+{
+ digitalWrite(LNA_EN, HIGH);
+ digitalWrite(PA_EN, LOW);
+}
+
+/**
+ * disableLNA
+ *
+ * Disable LNA and PA on the LD-Board
+ */
+void CC1101::disableLNA(void)
+{
+ digitalWrite(LNA_EN, LOW);
+ digitalWrite(PA_EN, LOW);
+}
+
+/**
+ * enableHGM
+ *
+ * Enable Long-distance board with CC1190 IC in high-gain mode
+ */
+void CC1101::enableHGM(void)
+{
+ hgmEnabled = true;
+
+ pinMode(HGM, OUTPUT);
+ pinMode(LNA_EN, OUTPUT);
+ pinMode(PA_EN, OUTPUT);
+
+ digitalWrite(HGM, HIGH);
+}
+
+/**
+ * disableHGM
+ *
+ * Disable high-gain mode on the LD-Board
+ */
+void CC1101::disableHGM(void)
+{
+ hgmEnabled = false;
+
+ digitalWrite(HGM, LOW);
+}
+

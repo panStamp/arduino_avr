@@ -44,15 +44,17 @@
 #define LED      ONBOARD_LED
 #define INIT_ONBOARD_LED()    pinMode(ONBOARD_LED, OUTPUT)
 
+// LD-BOARD definitions
+#define HGM     20
+#define LNA_EN  19
+#define PA_EN   18
+
 #define NUM_DIGITAL_PINS            23
 #define NUM_ANALOG_INPUTS           8
 #define analogInputToDigitalPin(p)  ((p < 6) ? (p) + 14 : -1)
 
-#if defined(__AVR_ATmega8__)
-#define digitalPinHasPWM(p)         ((p) == 9 || (p) == 10 || (p) == 11)
-#else
-#define digitalPinHasPWM(p)         ((p) == 3 || (p) == 5 || (p) == 6 || (p) == 9 || (p) == 10 || (p) == 11)
-#endif
+#define digitalPinHasPWM(p)         ((p) == 1 || (p) == 2 || (p) == 3 || (p) == 4 || (p) == 18 || (p) == 19)
+
 
 static const uint8_t SS   = 22;
 static const uint8_t MOSI = 0;
@@ -82,12 +84,12 @@ static const uint8_t A7 = 13;
 // ADC resolution
 #define ADC_RESOLUTION  1023
 
-#define digitalPinToPCICR(p)    (((p) >= 0 && (p) <= 21) ? (&PCICR) : ((uint8_t *)0))
-#define digitalPinToPCICRbit(p) (((p) <= 7) ? 2 : (((p) <= 13) ? 0 : 1))
-#define digitalPinToPCMSK(p)    (((p) <= 7) ? (&PCMSK2) : (((p) <= 13) ? (&PCMSK0) : (((p) <= 21) ? (&PCMSK1) : ((uint8_t *)0))))
-#define digitalPinToPCMSKbit(p) (((p) <= 7) ? (p) : (((p) <= 13) ? ((p) - 8) : ((p) - 14)))
+#define digitalPinToPCICR(p)    (((p) >= 0 && (p) <= 22) ? (&PCICR) : ((uint8_t *)0))
+#define digitalPinToPCICRbit(p) (((p) <= 22 && (p) >= 18 || (p) == 0 || (p) == 1) ? 2 : (((p) <= 11 && (p) >= 3) ? 1 : 0))
+#define digitalPinToPCMSK(p)    (((p) <= 22 && (p) >= 18 || (p) == 0 || (p) == 1) ? (&PCMSK2) : (((p) <= 11 && (p) >= 3) ? (&PCMSK1) : (&PCMSK0))))
+#define digitalPinToPCMSKbit(p) digital_pin_to_bit_mask_PGM[p]
 
-#define digitalPinToInterrupt(p)  ((p) == 2 ? 0 : ((p) == 3 ? 1 : NOT_AN_INTERRUPT))
+#define digitalPinToInterrupt(p)  ((p) == 18 ? 1 : NOT_AN_INTERRUPT)
 
 #ifdef ARDUINO_MAIN
 

@@ -28,7 +28,6 @@
 #include "simplespi.h"
 #include "ccpacket.h"
 
-
 /**
  * Carrier frequencies
  */
@@ -353,6 +352,32 @@ class CC1101
      */
     void setRegsFromEeprom(void);
 
+    /**
+     * High-gain mode enabled on the LD-board
+     */
+    bool hgmEnabled;
+
+    /**
+     * enablePA
+     *
+     * Enable PA and disable LNA on the LD-Board
+     */
+     void enablePA(void);
+
+    /**
+     * enableLNA
+     *
+     * Enable LNA and disable PA on the LD-Board
+     */
+     void enableLNA(void);
+
+    /**
+     * disableLNA
+     *
+     * Disable LNA and PA on the LD-Board
+     */
+     void disableLNA(void);
+
   public:
     /*
      * RF state
@@ -553,8 +578,22 @@ class CC1101
      */
     inline void setTxPowerAmp(uint8_t paLevel)
     {
-        writeReg(CC1101_PATABLE, paLevel);
+      writeReg(CC1101_PATABLE, paLevel);
     }
+
+    /**
+     * enableHGM
+     *
+     * Enable Long-distance board with CC1190 IC in high-gain mode
+     */
+     void enableHGM(void);
+
+    /**
+     * disableHGM
+     *
+     * Disable high-gain mode on the LD-Board
+     */
+     void disableHGM(void);
 };
 
 #endif
