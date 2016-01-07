@@ -86,7 +86,7 @@ static const uint8_t A7 = 13;
 
 #define digitalPinToPCICR(p)    (((p) >= 0 && (p) <= 22) ? (&PCICR) : ((uint8_t *)0))
 #define digitalPinToPCICRbit(p) (((p) <= 22 && (p) >= 18 || (p) == 0 || (p) == 1) ? 2 : (((p) <= 11 && (p) >= 3) ? 1 : 0))
-#define digitalPinToPCMSK(p)    (((p) <= 22 && (p) >= 18 || (p) == 0 || (p) == 1) ? (&PCMSK2) : (((p) <= 11 && (p) >= 3) ? (&PCMSK1) : (&PCMSK0))))
+#define digitalPinToPCMSK(p)    (((p) <= 22 && (p) >= 18 || (p) == 0 || (p) == 1) ? (&PCMSK2) : (((p) <= 11 && (p) >= 3) ? (&PCMSK1) : (&PCMSK0)))
 #define digitalPinToPCMSKbit(p) digital_pin_to_bit_mask_PGM[p]
 
 #define digitalPinToInterrupt(p)  ((p) == 18 ? 1 : NOT_AN_INTERRUPT)
