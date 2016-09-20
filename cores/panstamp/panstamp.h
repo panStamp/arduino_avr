@@ -195,6 +195,22 @@ class PANSTAMP
      inline void goToWirelessBoot(void)
      {
      }
+
+    /**
+     * sendData
+     *
+     * Transmit packet
+     *
+     * @param packet Packet to be transmitted. First byte is the destination address
+     *
+     * @return
+     *  True if the transmission succeeds
+     *  False otherwise
+     */
+    inline bool sendData(CCPACKET packet)
+    {
+      return radio.sendData(packet);
+    }
 };
 
 /**
