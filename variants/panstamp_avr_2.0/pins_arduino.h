@@ -97,28 +97,28 @@ static const uint8_t A7 = 13;
 // for the analog output (software PWM).  Analog input
 // pins are a separate set.
 
-//                            ANT
-//                         GND | GND
-//                       GND | | | GND
-//                     GND | | | | | GND
-//                       | | | | | | |
-//                      +-------------+
-//               N.C.  1|     ||||    |27  PD3 (D18) (PWM)
-//               N.C.  2|             |26  PD4 (D19) (PWM)
-//    (D15) (LED) PB1  3|             |25  PD5 (D20)
-//          (D14) PB0  4|             |24  PD6 (D21)
-//          (A7) ADC7  5|             |23  PD7 (D22)
-//          (A6) ADC6  6|             |22  PB3 (SPI_MOSI) (D0)
-//       (D11/A3) PC3  7|             |21  PB4 (SPI_MISO) (D1) (PWM)
-//       (D10/A2) PC2  8|             |20  PB5 (SPI_SCK) (D2) (PWM)
-//        (D9/A1) PC1  9|             |19  PC4 (I2C_SDA) (D3/A4) (PWM)
-//        (D8/A0) PC0 10|             |18  PC5 (I2C_SCL) (D4/A5) (PWM)
-//                      +-------------+
-//                       | | | | | | |
-//                    AREF | | | | | PD0 (D5/RXD)
-//                       RST | | | PD1 (D6/TXD)
-//                         VCC | N.C.
-//                            GND
+//                              ANT
+//                           GND | GND
+//                         GND | | | GND
+//                       GND | | | | | GND
+//                         | | | | | | |
+//                        +-------------+
+//                 N.C.  1|     ||||    |27  PD3 (D18) (PWM)
+//                 N.C.  2|             |26  PD4 (D19)
+//(PWM) (D15) (LED) PB1  3|             |25  PD5 (D20) (PWM)
+//            (D14) PB0  4|             |24  PD6 (D21) (PWM)
+//            (A7) ADC7  5|             |23  PD7 (D22)
+//            (A6) ADC6  6|             |22  PB3 (SPI_MOSI) (D0)
+//         (D11/A3) PC3  7|             |21  PB4 (SPI_MISO) (D1)
+//         (D10/A2) PC2  8|             |20  PB5 (SPI_SCK) (D2)
+//          (D9/A1) PC1  9|             |19  PC4 (I2C_SDA) (D3/A4)
+//          (D8/A0) PC0 10|             |18  PC5 (I2C_SCL) (D4/A5)
+//                        +-------------+
+//                         | | | | | | |
+//                      AREF | | | | | PD0 (D5/RXD)
+//                         RST | | | PD1 (D6/TXD)
+//                           VCC | N.C.
+//                              GND
 //
 //                    ONBOARD_LED   -- PB1 (D15)
 //                    CC1101_GDO0   -- PD2/INT0 (D16)
@@ -206,13 +206,10 @@ const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[] = {
 
 const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
 	NOT_ON_TIMER,
-  TIMER2A,
-	TIMER2B,
-  TIMER0A,
-  TIMER0B,
+  NOT_ON_TIMER,
 	NOT_ON_TIMER,
-	NOT_ON_TIMER,
-	NOT_ON_TIMER,
+  NOT_ON_TIMER,
+  NOT_ON_TIMER,
 	NOT_ON_TIMER,
 	NOT_ON_TIMER,
 	NOT_ON_TIMER,
@@ -224,9 +221,12 @@ const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
 	NOT_ON_TIMER,
 	NOT_ON_TIMER,
 	TIMER1A,
-	TIMER1B,
 	NOT_ON_TIMER,
 	NOT_ON_TIMER,
+  TIMER2B,
+	NOT_ON_TIMER,
+	TIMER0B,
+	TIMER0A,
 	NOT_ON_TIMER
 };
 
